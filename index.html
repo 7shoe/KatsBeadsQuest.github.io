@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatsQuest - Monthly Bead Subscription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #d4941e 0%, #b8860b 100%);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f4e4bc 0%, #e6d3a3 50%, #d4c5a0 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #8b4513;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: #6b4423;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #d4941e 0%, #b8860b 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
+            animation: gentle-float 4s ease-in-out infinite;
+        }
+
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .features {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #d4941e 0%, #b8860b 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subscription-section {
+            background: linear-gradient(135deg, #cd853f 0%, #d2691e 100%);
+            padding: 5rem 0;
+            color: white;
+        }
+
+        .subscription-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .subscription-container h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 400px;
+            margin: 2rem auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #d4941e;
+            margin-bottom: 1rem;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .community-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f5deb3 0%, #f4e4bc 100%);
+        }
+
+        .community-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .community-container h2 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .community-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .community-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .app-section {
+            background: linear-gradient(135deg, #d4941e 0%, #b8860b 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .app-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">BeatsQuest</div>
+            <div class="nav-links">
+                <span>Subscription</span>
+                <span>Tutorials</span>
+                <span>Community</span>
+                <span>Private Lessons</span>
+                <span>App</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>CREATE BEAUTIFUL JEWELRY</h1>
+                <p class="subtitle">Monthly bead subscription box with premium materials, exclusive tutorials, and a vibrant crafting community</p>
+                <button class="cta-button">Start Creating</button>
+            </div>
+            <div class="hero-visual">
+                <img src="cat-mascot.png" alt="BeatsQuest Cat Mascot" class="hero-image" style="max-width: 400px; height: auto;" />
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <h2>Everything You Need to Create</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Monthly Bead Box</h3>
+                    <p>Curated selection of premium beads, tools, and materials delivered to your door every month</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎥</div>
+                    <h3>Video Tutorials</h3>
+                    <p>Step-by-step YouTube tutorials for every skill level, from beginner basics to advanced techniques</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Live Community Sessions</h3>
+                    <p>Join virtual crafting sessions with fellow jewelry makers and share your creations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Private Lessons</h3>
+                    <p>Book one-on-one sessions with expert jewelry makers for personalized guidance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscription-section">
+        <div class="subscription-container">
+            <h2>Start Your Creative Journey</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Join thousands of jewelry makers worldwide</p>
+            
+            <div class="pricing-card">
+                <div class="price">$29.99<span style="font-size: 1rem;">/month</span></div>
+                <ul class="price-features">
+                    <li>✨ Premium bead selection</li>
+                    <li>🛠️ Professional tools included</li>
+                    <li>📱 Mobile app access</li>
+                    <li>🎥 Unlimited tutorial access</li>
+                    <li>💬 Community forum access</li>
+                    <li>📞 Priority customer support</li>
+                </ul>
+                <button class="cta-button">Subscribe Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="community-section">
+        <div class="community-container">
+            <h2>Join Our Creative Community</h2>
+            <p style="font-size: 1.2rem; color: #555;">Connect, learn, and create together</p>
+            
+            <div class="community-features">
+                <div class="community-card">
+                    <h3>🌟 Weekly Challenges</h3>
+                    <p>Participate in fun jewelry-making challenges and win exclusive beads</p>
+                </div>
+                <div class="community-card">
+                    <h3>📸 Share Your Work</h3>
+                    <p>Show off your creations and get inspired by others in our gallery</p>
+                </div>
+                <div class="community-card">
+                    <h3>💡 Get Expert Tips</h3>
+                    <p>Learn from master jewelers and improve your techniques</p>
+                </div>
+                <div class="community-card">
+                    <h3>🎉 Monthly Meetups</h3>
+                    <p>Join virtual and local meetups to craft together with fellow makers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="app-container">
+            <h2>📱 Take BeatsQuest Anywhere</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Access tutorials, track your projects, and connect with the community on our mobile app</p>
+            <button class="cta-button">Download App</button>
+        </div>
+    </section>
+</body>
+</html>
